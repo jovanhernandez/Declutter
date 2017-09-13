@@ -1,0 +1,8 @@
+#!/bin/sh
+cd ~/Desktop
+for file in *.??? ; do
+    [ -f "$file" ] || continue
+    dir="$(echo "$file" | rev | cut -c-3 | rev)"
+    mkdir -p "$dir" || { echo "Couldn't mkdir -p $dir; exiting" ; exit 1 ; }
+    mv -- "$file" "$dir"
+done
